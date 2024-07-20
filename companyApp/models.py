@@ -33,7 +33,7 @@ class Member(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    logo__path = models.ImageField(upload_to='service_logos/', null=True, blank=True)
+    logo_path = models.ImageField(upload_to='service_logos/', null=True, blank=True)
     background_path = models.ImageField(upload_to='service_backgrounds/', null=True, blank=True)
 
     def __str__(self):
@@ -68,3 +68,11 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class Question(models.Model):
+    text = models.TextField()
+    answer = models.TextField()
+
+    def __str__(self):
+        return self.text[:30]

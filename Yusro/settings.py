@@ -29,6 +29,10 @@ INSTALLED_APPS = [
     'userApp',
     'mainApp',
     'companyApp',
+    'contactUsApp',
+    'recordApp',
+    'travelApp',
+    'articleApp',
 
     # Packages:
     'rest_framework',
