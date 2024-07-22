@@ -30,6 +30,8 @@ urlpatterns = [
     path('contact-us/', include('contactUsApp.urls')),
     path('record/', include('recordApp.urls')),
     path('post/', include('articleApp.urls')),
+    path('travel/', include('travelApp.urls')),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
