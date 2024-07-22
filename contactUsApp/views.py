@@ -5,6 +5,11 @@ from .serializers import *
 from .models import *
 
 
+class DiscussionCreateAPIView(CreateAPIView):
+    queryset = Discussion.objects.all()
+    serializer_class = DiscussionPostSerializer
+
+
 class NewsletterCreateAPIView(CreateAPIView):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterPostSerializer

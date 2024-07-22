@@ -44,7 +44,3 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DiscussionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Discussion
-        fields = '__all__'

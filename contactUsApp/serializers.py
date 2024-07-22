@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import *
 
 
+class DiscussionPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discussion
+        fields = ('full_name', 'email', 'phone_number', 'message_goal', 'message')
+
+
 class NewsletterPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Newsletter
