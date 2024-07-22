@@ -84,4 +84,10 @@ class TourPacksListAPIView(ListAPIView):
         return queryset
 
 
+class TourPackRetrieveAPIView(RetrieveAPIView):
+    queryset = TourPack.objects.all()
+    serializer_class = TourPackSerializer
 
+    def get_object(self):
+        tour_pack = get_object_or_404(TourPack, pk=self.kwargs['tour_pack_id'])
+        return tour_pack

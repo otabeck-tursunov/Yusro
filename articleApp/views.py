@@ -2,6 +2,7 @@ from django.db.models import Q
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.filters import SearchFilter
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import *
@@ -48,9 +49,16 @@ class CategoriesListAPIView(ListAPIView):
 class ArticleListAPIView(ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    pagination_class = PageNumberPagination
 
     @swagger_auto_schema(
         manual_parameters=[
+            openapi.Parameter(
+                name='page_size',
+                type=openapi.TYPE_INTEGER,
+                description='Number of items per page',
+                in_=openapi.IN_QUERY,
+            ),
             openapi.Parameter(
                 name='search',
                 type=openapi.TYPE_STRING,
@@ -75,7 +83,7 @@ class ArticleListAPIView(ListAPIView):
                 description='Order by title, views, created_at',
                 in_=openapi.IN_QUERY,
                 enum=['title', '-title', 'views', '-views', 'created_at', '-created_at'],
-            )
+            ),
         ]
     )
     def get(self, request, *args, **kwargs):
@@ -115,6 +123,10 @@ class ArticleListAPIView(ListAPIView):
                 queryset = queryset.order_by('created_at')
             elif order_by.lower() == '-created_at':
                 queryset = queryset.order_by('-created_at')
+
+        page_size = self.request.query_params.get('page_size')
+        if page_size:
+            self.pagination_class.page_size = int(page_size)
         return queryset
 
 

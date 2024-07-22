@@ -5,6 +5,14 @@ from django.contrib.auth.models import AbstractUser
 from mainApp.models import Branch
 
 
+class Role(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    fixed_salary = models.FloatField(validators=[MinValueValidator(0.0)])
+    min_customers = models.PositiveSmallIntegerField()
+
+
+
+
 class User(AbstractUser):
     ROLE_CHOICES = (
         ('Agent', 'Agent'),
