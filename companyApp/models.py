@@ -63,7 +63,6 @@ class Testimonial(models.Model):
     rate = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(5)])
     conclusion = models.CharField(max_length=255, blank=True, null=True)
     text = models.TextField()
-    published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
