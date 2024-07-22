@@ -59,3 +59,8 @@ class TestimonialsListAPIView(ListAPIView):
 class QuestionsListAPIView(ListAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
+
+class DiscussionsListAPIView(ListAPIView):
+    queryset = Discussion.objects.all()
+    serializer_class = DiscussionSerializer
