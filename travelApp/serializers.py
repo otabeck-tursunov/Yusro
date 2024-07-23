@@ -11,7 +11,7 @@ class PlaceSerializer(serializers.ModelSerializer):
         place = super(PlaceSerializer, self).to_representation(instance)
 
         tour_packs = TourPack.objects.filter(place=instance)
-        tour_packs_serializer = TourPackCascadeSerializer(tour_packs, many=True)
+        tour_packs_serializer = TourPackSerializer(tour_packs, many=True)
 
         place.update(
             {
@@ -40,7 +40,7 @@ class TourPackSerializer(serializers.ModelSerializer):
 
         tour_pack.update(
             {
-                'includes': pack_includes_serializer.data
+                'pack_includes': pack_includes_serializer.data
             }
         )
         return tour_pack

@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ll%x1w^rq7ps7chktn2_*)nga0-_nscbbhl-#_#ay-=f%2w6u='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,7 +51,7 @@ REST_FRAMEWORK = {
     ),
     # Pagination
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10  # Standart sahifa hajmi
+    # 'PAGE_SIZE': 10  # Standart sahifa hajmi
 }
 
 SWAGGER_SETTINGS = {

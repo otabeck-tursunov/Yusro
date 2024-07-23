@@ -26,7 +26,7 @@ class TourPack(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.place.name + ": " + self.name
 
 
 class PackInclude(models.Model):
