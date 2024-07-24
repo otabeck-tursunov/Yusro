@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'travelApp',
     'articleApp',
 
+    'LANDING',
+
     # Packages:
     'rest_framework',
     'rest_framework_simplejwt',

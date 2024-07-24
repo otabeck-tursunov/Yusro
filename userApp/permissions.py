@@ -1,22 +1,8 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsAgent(BasePermission):
+class IsAdminUser(BasePermission):
     def has_permission(self, request, view):
-        if request.user.role == 'Agent' and request.user.is_authenticated:
-            return True
-        return False
-
-
-class IsAshir(BasePermission):
-    def has_permission(self, request, view):
-        if request.user.role == 'Ashir' and request.user.is_authenticated:
-            return True
-        return False
-
-
-class IsKurator(BasePermission):
-    def has_permission(self, request, view):
-        if request.user.role == 'Kurator' and request.user.is_authenticated:
+        if (request.user.role.name == 'Admin' or request.user.is_superuser) and request.user.is_authenticated:
             return True
         return False

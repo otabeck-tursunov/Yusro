@@ -22,6 +22,7 @@ class User(AbstractUser):
     point = models.PositiveIntegerField(default=0)
     phone_number = models.CharField(max_length=20)
     branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True)
+    boss = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='bosses')
 
     def __str__(self):
         return f"{self.role}: {self.username}"

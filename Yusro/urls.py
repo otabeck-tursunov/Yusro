@@ -31,6 +31,7 @@ urlpatterns = [
     path('record/', include('recordApp.urls')),
     path('post/', include('articleApp.urls')),
     path('travel/', include('travelApp.urls')),
+    path('landing-admin/', include('LANDING.urls')),
 
 ]
 
