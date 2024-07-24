@@ -1,14 +1,22 @@
+from rest_framework.response import Response
 from rest_framework.generics import *
-from rest_framework.permissions import IsAdminUser
+from rest_framework.views import APIView
 
-from contactUsApp.models import *
 from contactUsApp.serializers import *
+from contactUsApp.models import *
+
+from travelApp.serializers import *
+from travelApp.models import *
+
+from userApp.serializers import *
+from userApp.models import *
+
 from userApp.permissions import IsAdminUser
 
-from articleApp.models import Category
 from articleApp.serializers import *
+from articleApp.models import Category
+
 from companyApp.serializers import *
-from .serializers import *
 from companyApp.models import *
 
 
@@ -70,7 +78,7 @@ class PartnershipRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = PartnershipSerializer
 
 
-class TetimonialListCreateAPIView(ListCreateAPIView):
+class TestimonialListCreateAPIView(ListCreateAPIView):
     permission_classes = (IsAdminUser,)
 
     queryset = Testimonial.objects.all()
@@ -211,3 +219,84 @@ class LidRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
     queryset = Lid.objects.all()
     serializer_class = LidSerializer
+
+
+# ------------- Travel ----------------
+
+
+class TourTypeListCreateAPIView(ListCreateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = TourType.objects.all()
+    serializer_class = TourTypeSerializer
+
+
+class TourTypeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = TourType.objects.all()
+    serializer_class = TourTypeSerializer
+
+
+class PlaceListCreateAPIView(ListCreateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = Place.objects.all()
+    serializer_class = PlaceSerializer
+
+
+class PlaceRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = Place.objects.all()
+    serializer_class = PlaceSerializer
+
+
+class TourPackListCreateAPIView(ListCreateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = TourPack.objects.all()
+    serializer_class = TourPackSerializer
+
+
+class TourPackRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = TourPack.objects.all()
+    serializer_class = TourPackSerializer
+
+
+class PackIncludeListCreateAPIView(ListCreateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = PackInclude.objects.all()
+    serializer_class = PackIncludeSerializer
+
+
+class PackIncludeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = PackInclude.objects.all()
+    serializer_class = PackIncludeSerializer
+
+
+# --------------- User, Role ---------------------
+
+class UserRetrieveAPIView(RetrieveAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
+
+class UserUpdateAPIView(UpdateAPIView):
+    permission_classes = (IsAdminUser,)
+
+    queryset = User.objects.all()
+    serializer_class = UserUpdateSerializer
+
+    def get_object(self):
+        return self.request.user

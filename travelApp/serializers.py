@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import *
 
 
+class TourTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourType
+        fields = '__all__'
+
+
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
@@ -47,6 +53,12 @@ class TourPackSerializer(serializers.ModelSerializer):
 
 
 class PackIncludeCascadeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PackInclude
+        fields = '__all__'
+
+
+class PackIncludeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PackInclude
         fields = '__all__'

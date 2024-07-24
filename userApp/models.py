@@ -6,12 +6,12 @@ from mainApp.models import Branch
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    fixed_salary = models.FloatField(validators=[MinValueValidator(0.0)])
-    min_customers = models.PositiveSmallIntegerField()
-    to_min = models.FloatField(validators=[MinValueValidator(0.0)])
-    from_min = models.FloatField(validators=[MinValueValidator(0.0)])
-    point = models.PositiveSmallIntegerField()
+    name = models.CharField(max_length=20)
+    fixed_salary = models.FloatField(validators=[MinValueValidator(0.0)], blank=True, null=True)
+    min_customers = models.PositiveSmallIntegerField(blank=True, null=True)
+    to_min = models.FloatField(validators=[MinValueValidator(0.0)], blank=True, null=True)
+    from_min = models.FloatField(validators=[MinValueValidator(0.0)], blank=True, null=True)
+    point = models.PositiveSmallIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -14,7 +14,7 @@ urlpatterns = [
     path('company/partnerships/', PartnershipListCreateAPIView.as_view()),
     path('company/partnerships/<int:pk>/', PartnershipRetrieveUpdateDestroyAPIView.as_view()),
 
-    path('company/testimonials/', TetimonialListCreateAPIView.as_view()),
+    path('company/testimonials/', TestimonialListCreateAPIView.as_view()),
     path('company/testimonials/<int:pk>/', TestimonialRetrieveUpdateDestroyAPIView.as_view()),
 
     path('company/questions/', QuestionListCreateAPIView.as_view()),
@@ -44,4 +44,18 @@ urlpatterns = [
     path('contact/lids/', LidListCreateAPIView.as_view()),
     path('contact/lids/<int:pk>/', LidRetrieveUpdateDestroyAPIView.as_view()),
 
+    path('travel/tour-types/', TourTypeListCreateAPIView.as_view()),
+    path('travel/tour-types/<int:pk>/', TourTypeRetrieveUpdateDestroyAPIView.as_view()),
+
+    path('travel/places/', TourTypeListCreateAPIView.as_view()),
+    path('travel/places/<int:pk>/', TourTypeRetrieveUpdateDestroyAPIView.as_view()),
+
+    path('travel/tour-packs/', TourPackListCreateAPIView.as_view()),
+    path('travel/tour-packs/<int:pk>/', TourPackRetrieveUpdateDestroyAPIView.as_view()),
+
+    path('travel/pack-includes/', PackIncludeListCreateAPIView.as_view()),
+    path('travel/pack-includes/<int:pk>/', PackIncludeRetrieveUpdateDestroyAPIView.as_view()),
+
+    path('users/me/', UserRetrieveAPIView.as_view()),
+    path('users/me/update/', UserUpdateAPIView.as_view())
 ]
