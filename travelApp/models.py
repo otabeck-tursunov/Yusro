@@ -11,6 +11,8 @@ class TourType(models.Model):
 
 class Place(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    image_path = models.ImageField(upload_to='places/', blank=True, null=True)
     important = models.PositiveSmallIntegerField(validators=[MaxValueValidator(10)])
     tour_type = models.ForeignKey(TourType, on_delete=models.SET_NULL, null=True)
 
