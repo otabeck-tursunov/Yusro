@@ -7,6 +7,17 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+    def to_representation(self, instance):
+        category = super(CategorySerializer, self).to_representation(instance)
+
+        articles_amount = instance.article_set.count()
+        category.update(
+            {
+                'articles_amount': articles_amount
+            }
+        )
+        return category
+
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
