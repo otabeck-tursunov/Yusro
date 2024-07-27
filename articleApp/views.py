@@ -78,6 +78,12 @@ class ArticleListAPIView(ListAPIView):
                 in_=openapi.IN_QUERY,
             ),
             openapi.Parameter(
+                name='tag_id',
+                type=openapi.TYPE_INTEGER,
+                description='Filter by Tag ID',
+                in_=openapi.IN_QUERY,
+            ),
+            openapi.Parameter(
                 name='order_by',
                 type=openapi.TYPE_STRING,
                 description='Order by title, views, created_at',
@@ -109,20 +115,13 @@ class ArticleListAPIView(ListAPIView):
 
         order_by = self.request.query_params.get('order_by')
         if order_by is not None:
-            if order_by.lower() == 'title':
-                queryset = queryset.order_by('title')
-            elif order_by.lower() == '-title':
-                queryset = queryset.order_by('-title')
+            queryset = queryset.order_by(order_by)
 
-            if order_by.lower() == 'views':
-                queryset = queryset.order_by('views')
-            elif order_by.lower() == '-views':
-                queryset = queryset.order_by('-views')
-
-            if order_by.lower() == 'created_at':
-                queryset = queryset.order_by('created_at')
-            elif order_by.lower() == '-created_at':
-                queryset = queryset.order_by('-created_at')
+        tag_id = self.request.query_params.get('tag_id')
+        if tag_id is not None:
+            get_object_or_404(Tag, pk=tag_id)
+            article_ids = ArticleTag.objects.filter(tag_id=tag_id).values_list('article_id', flat=True)
+            queryset = queryset.filter(id__in=article_ids)
 
         page_size = self.request.query_params.get('page_size')
         if page_size:
@@ -141,7 +140,7 @@ class ArticleRetrieveAPIView(RetrieveAPIView):
         return article
 
 
-class CommentListAPIView(ListAPIView):
+class CommentListCreateAPIView(ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
