@@ -10,19 +10,20 @@ class RoleSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    role = RoleSerializer()
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'phone_number', 'branch', 'first_name', 'last_name')
+        fields = ('id', 'username', 'password', 'phone_number', 'branch', 'first_name', 'last_name', 'role')
 
-    def to_representation(self, instance):
-        user = super(UserSerializer, self).to_representation(instance)
-        role = User.objects.get(id=instance.id).role.name
-        user.update(
-            {
-                'role': role
-            }
-        )
-        return user
+    # def to_representation(self, instance):
+    #     user = super(UserSerializer, self).to_representation(instance)
+    #     role = User.objects.get(id=instance.id).role.name
+    #     user.update(
+    #         {
+    #             'role': role
+    #         }
+    #     )
+    #     return user
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
