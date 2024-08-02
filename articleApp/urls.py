@@ -10,7 +10,7 @@ urlpatterns = [
     path('comments/', CommentListCreateAPIView.as_view()),
     path('comments/<int:comment_id>/', CommentRetrieveAPIView.as_view()),
 
-    path('tags/', TagsListAPIView.as_view()),
+    # path('tags/', TagsListAPIView.as_view()),
     path('tags/<int:tag_id>/', TagRetrieveAPIView.as_view()),
 
 ]
