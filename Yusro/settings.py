@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ll%x1w^rq7ps7chktn2_*)nga0-_nscbbhl-#_#ay-=f%2w6u='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -108,8 +108,12 @@ WSGI_APPLICATION = 'Yusro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'admin',
+        'PASSWORD': '11223344',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
